@@ -1,0 +1,38 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+.pytest_cache/
+.ruff_cache/
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Raw data and large graph caches are distributed separately.
+/data/*
+!/data/saved_graphs/
+/data/saved_graphs/*
+!/data/saved_graphs/README.md
+!/data/saved_graphs/karate_SI_graph.pkl
+!/data/saved_graphs/karate_SIR_graph.pkl
+!/data/saved_graphs/karate_IC_graph.pkl
+!/data/saved_graphs/jazz_SI_graph.pkl
+!/data/saved_graphs/jazz_SIR_graph.pkl
+!/data/saved_graphs/jazz_IC_graph.pkl
+
+# Keep existing best checkpoints, but exclude newly generated run artifacts.
+/runs/
+/output/
+/model_saves/*
+!/model_saves/checkpoints/
+/model_saves/checkpoints/*
+!/model_saves/checkpoints/*_best_by_f1.pt
+/model/SIDSL/datasets/
+*.log
+*.tmp
