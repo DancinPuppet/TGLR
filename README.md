@@ -65,7 +65,7 @@ Run the commands below from the repository root.
 The small Karate and Jazz caches are included in this repository. The remaining
 eight preprocessed graph caches are available in **[TGLR Datasets v1.0](https://github.com/DancinPuppet/TGLR/releases/tag/datasets-v1.0)**:
 
-**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (approximately 315 MiB compressed; 2.4 GB extracted).
+**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (approximately 310 MiB compressed; 2.4 GB extracted).
 
 The archive contains Cora-ML and Facebook caches under SI and SIR, plus Twitter15,
 Twitter16, Twitter25, and Weibo caches. To install them:
@@ -86,6 +86,12 @@ python -m zipfile -e graphs.zip data/saved_graphs/
 See [data/saved_graphs/README.md](data/saved_graphs/README.md) for the full filename
 list and archive checksum. The large caches remain excluded from Git and are
 provided as a Release attachment.
+
+The public Twitter25 cache uses node indices local to each cascade and reindexed
+cascade identifiers; original identifier mappings are not released. The update
+preserves graph structure, all numerical features, labels, snapshots, and the
+ordering used by the data loader. If you downloaded the archive before the
+October 1, 2026 update, download it again to obtain this public copy.
 
 The main entry point loads preprocessed caches. It does not automatically download
 data or regenerate missing datasets. Preprocessing functions in `create_graphs.py`

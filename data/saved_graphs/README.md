@@ -12,7 +12,7 @@ Place each preprocessed dataset in this directory as `<dataset>_graph.pkl`.
 The eight larger graph caches are published in
 **[TGLR Datasets v1.0](https://github.com/DancinPuppet/TGLR/releases/tag/datasets-v1.0)**.
 
-**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (330,415,497 bytes, approximately 315 MiB).
+**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (324,599,348 bytes, approximately 310 MiB).
 
 The archive contains these files directly at its root:
 
@@ -40,11 +40,30 @@ repository files, not these larger datasets.
 SHA-256 of `graphs.zip`:
 
 ```text
-2426d2aba9d022bd35cd8f08e16129b6fb9a6b7ebf70225f1f82c44ad28f3649
+96d3a3c7fd73df60b2bf54028b591af5fc2eb48601875ae75445136ff69f1668
 ```
 
 These caches and the archive are intentionally excluded from Git. Their download
 is provided through the Release attachment.
+
+## Twitter25 identifier update (October 1, 2026)
+
+The public Twitter25 cache uses `n0`, `n1`, ... as node identifiers independently
+within each cascade, and `cascade_000000`, `cascade_000001`, ... as cascade
+identifiers. Node indices are local to a cascade and must not be interpreted as
+shared user identities across cascades. Original identifier mappings are not
+released.
+
+All 981 cascades retain their original graph-list, node, neighbor, and edge
+ordering; numerical attributes, source labels, and snapshot arrays are unchanged.
+Snapshot column references and source-node references use the new identifiers.
+Ordered data equivalence was checked before and after serialization, including
+the loader's score-based node ordering. No training or model inference was rerun
+for this identifier-only update. The other seven files in the archive are
+byte-for-byte unchanged.
+
+The download URL remains the same. If you downloaded the archive before this
+update, download it again and verify the SHA-256 above.
 
 ## Cache format
 
