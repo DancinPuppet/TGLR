@@ -62,16 +62,30 @@ Run the commands below from the repository root.
 
 ## Datasets
 
-The small Karate and Jazz caches are included. Cora-ML, Facebook, Twitter15,
-Twitter16, Twitter25, and Weibo caches are distributed separately due to their
-size. **External download links will be added later.**
+The small Karate and Jazz caches are included in this repository. The remaining
+eight preprocessed graph caches are available in **[TGLR Datasets v1.0](https://github.com/DancinPuppet/TGLR/releases/tag/datasets-v1.0)**:
 
-See [data/saved_graphs/README.md](data/saved_graphs/README.md) for exact filenames.
-For example, the Twitter25 cache must be placed at:
+**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (approximately 315 MiB compressed; 2.4 GB extracted).
 
-```text
-data/saved_graphs/twitter25_graph.pkl
+The archive contains Cora-ML and Facebook caches under SI and SIR, plus Twitter15,
+Twitter16, Twitter25, and Weibo caches. To install them:
+
+1. Download `graphs.zip` from the link above or the release's **Assets** section.
+   GitHub's automatically generated **Source code** archives do not contain these datasets.
+2. Extract the eight `.pkl` files directly into `data/saved_graphs/`.
+   Do not leave them inside an additional `graphs/` subdirectory.
+3. Keep the original filenames. For example, Twitter25 must be located at
+   `data/saved_graphs/twitter25_graph.pkl`.
+
+If you save `graphs.zip` in the repository root, extract it with:
+
+```bash
+python -m zipfile -e graphs.zip data/saved_graphs/
 ```
+
+See [data/saved_graphs/README.md](data/saved_graphs/README.md) for the full filename
+list and archive checksum. The large caches remain excluded from Git and are
+provided as a Release attachment.
 
 The main entry point loads preprocessed caches. It does not automatically download
 data or regenerate missing datasets. Preprocessing functions in `create_graphs.py`
@@ -185,10 +199,10 @@ statistics after all four real-world graph caches have been installed.
 copy. SIDSL source code is not bundled, and this utility is not imported by the
 TGLR training pipeline.
 
-## Manuscript and data release
+## Manuscript
 
 Manuscript title: *Latent Distribution Modeling for Source Localization under
 Temporal Observation Mismatch*.
 
-Publication metadata and external dataset download links will be added when
-available. No publication DOI is assigned in this repository at present.
+Publication metadata will be added when available. No publication DOI is assigned
+in this repository at present.
