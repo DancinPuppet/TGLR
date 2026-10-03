@@ -63,15 +63,15 @@ Run the commands below from the repository root.
 ## Datasets
 
 The small Karate and Jazz caches are included in this repository. The remaining
-eight preprocessed graph caches are available in **[TGLR Datasets v1.0](https://github.com/DancinPuppet/TGLR/releases/tag/datasets-v1.0)**:
+eight preprocessed graph caches are available in **[TGLR Datasets on OSF](https://osf.io/v4mp5/overview?view_only=5792705d28d54a19885b470123dd4598)**:
 
-**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (approximately 310 MiB compressed; 2.4 GB extracted).
+**[Download graphs.zip](https://osf.io/download/6ac0c1f683fe948c5b496b14/?view_only=5792705d28d54a19885b470123dd4598)** (approximately 310 MiB compressed; 2.4 GB extracted).
 
 The archive contains Cora-ML and Facebook caches under SI and SIR, plus Twitter15,
 Twitter16, Twitter25, and Weibo caches. To install them:
 
-1. Download `graphs.zip` from the link above or the release's **Assets** section.
-   GitHub's automatically generated **Source code** archives do not contain these datasets.
+1. Download `graphs.zip` from the link above. The OSF view-only link supports
+   anonymous access without signing in.
 2. Extract the eight `.pkl` files directly into `data/saved_graphs/`.
    Do not leave them inside an additional `graphs/` subdirectory.
 3. Keep the original filenames. For example, Twitter25 must be located at
@@ -85,7 +85,7 @@ python -m zipfile -e graphs.zip data/saved_graphs/
 
 See [data/saved_graphs/README.md](data/saved_graphs/README.md) for the full filename
 list and archive checksum. The large caches remain excluded from Git and are
-provided as a Release attachment.
+provided through OSF and as a GitHub Release attachment.
 
 The public Twitter25 cache uses node indices local to each cascade and reindexed
 cascade identifiers; original identifier mappings are not released. The update

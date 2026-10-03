@@ -10,9 +10,9 @@ Place each preprocessed dataset in this directory as `<dataset>_graph.pkl`.
 ## Download the remaining datasets
 
 The eight larger graph caches are published in
-**[TGLR Datasets v1.0](https://github.com/DancinPuppet/TGLR/releases/tag/datasets-v1.0)**.
+**[TGLR Datasets on OSF](https://osf.io/v4mp5/overview?view_only=5792705d28d54a19885b470123dd4598)**.
 
-**[Download graphs.zip](https://github.com/DancinPuppet/TGLR/releases/download/datasets-v1.0/graphs.zip)** (324,599,348 bytes, approximately 310 MiB).
+**[Download graphs.zip](https://osf.io/download/6ac0c1f683fe948c5b496b14/?view_only=5792705d28d54a19885b470123dd4598)** (324,599,348 bytes, approximately 310 MiB).
 
 The archive contains these files directly at its root:
 
@@ -33,9 +33,9 @@ For example, the resulting Twitter25 path must be
 `data/saved_graphs/twitter25_graph.pkl`. The extracted files occupy approximately
 2.4 GB. The loader reads the extracted `.pkl` files, not the ZIP archive.
 
-On the release page, select **graphs.zip** under **Assets**. GitHub's automatically
-generated **Source code (zip)** and **Source code (tar.gz)** downloads contain the
-repository files, not these larger datasets.
+The OSF view-only link allows the archive to be downloaded without signing in
+and hides project contributor names. Preserve the `view_only` parameter when
+sharing the link. The same archive is also available as a GitHub Release attachment.
 
 SHA-256 of `graphs.zip`:
 
@@ -44,7 +44,7 @@ SHA-256 of `graphs.zip`:
 ```
 
 These caches and the archive are intentionally excluded from Git. Their download
-is provided through the Release attachment.
+is provided through OSF and the GitHub Release attachment.
 
 ## Twitter25 identifier update (October 1, 2026)
 
