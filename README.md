@@ -98,6 +98,23 @@ data or regenerate missing datasets. Preprocessing functions in `create_graphs.p
 require the corresponding raw data for datasets other than the built-in Karate
 graph.
 
+### Twitter25-NQ
+
+[Download Twitter25-NQ](https://github.com/DancinPuppet/TGLR/releases/download/twitter25-nq-v1.0/twitter25_noquote_graph.zip)
+(977 cascades). Quote posts and their incident edges are removed, retaining the
+connected component containing the original source. Extract the cache and evaluate
+the supplied checkpoint:
+
+```bash
+python -m zipfile -e twitter25_noquote_graph.zip data/saved_graphs/
+python main.py --mode test --dataset twitter25_noquote --model TGLR --obs-len 5 --obs-start 0 --diff-weight 0.1 --no-sampling --ttt-steps 100 --checkpoint model_saves/checkpoints/TGLR_twitter25_noquote_best_by_f1.pt --no-visual
+```
+
+The checkpoint was selected by validation F1. Recorded test F1/AUC: **0.3636 / 0.8104**.
+Standalone reevaluation can vary because test-time adaptation is stochastic.
+The [configuration and results](data/saved_graphs/twitter25_noquote_results.json)
+and [781/98/98 split](data/saved_graphs/twitter25_noquote_split.json) are included.
+
 ## Quick start
 
 Display the available arguments:

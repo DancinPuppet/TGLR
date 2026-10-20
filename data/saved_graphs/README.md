@@ -65,6 +65,18 @@ byte-for-byte unchanged.
 The download URL remains the same. If you downloaded the archive before this
 update, download it again and verify the SHA-256 above.
 
+## Twitter25-NQ
+
+[Download the cache](https://github.com/DancinPuppet/TGLR/releases/download/twitter25-nq-v1.0/twitter25_noquote_graph.zip)
+and extract `twitter25_noquote_graph.pkl` into this directory. It contains 977
+connected cascades after removing quote posts and retaining each source component.
+Node IDs are local integer indices; cascade IDs follow the original list order.
+Original identifier mappings are not released. Graph structure, numeric features,
+labels, snapshots, and loader ordering are preserved.
+
+See [split IDs](twitter25_noquote_split.json) and
+[configuration, recorded metrics, and file checksums](twitter25_noquote_results.json).
+
 ## Cache format
 
 Each pickle contains a list of NetworkX graphs. The loader assigns a graph ID

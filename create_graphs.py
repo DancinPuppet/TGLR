@@ -1096,7 +1096,9 @@ def data(args_para: args.Args, load_exited_graphs=False):
         Path(args_para.graphs_saved_path).parent.mkdir(parents=True, exist_ok=True)
     graphs = []
     print(f"{args_para.graph_type} data loading......")
-    if args_para.graph_type == 'twitter25':
+    if args_para.graph_type in ('twitter25', 'twitter25_noquote'):
+        if args_para.graph_type == 'twitter25_noquote' and not load_exited_graphs:
+            raise ValueError('Twitter25-NQ requires the released preprocessed cache.')
         graphs_path = args_para.graphs_saved_path
         if load_exited_graphs:
             if os.path.exists(graphs_path):
