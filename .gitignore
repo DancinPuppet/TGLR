@@ -19,8 +19,6 @@ Thumbs.db
 !/data/saved_graphs/
 /data/saved_graphs/*
 !/data/saved_graphs/README.md
-!/data/saved_graphs/twitter25_noquote_split.json
-!/data/saved_graphs/twitter25_noquote_results.json
 !/data/saved_graphs/karate_SI_graph.pkl
 !/data/saved_graphs/karate_SIR_graph.pkl
 !/data/saved_graphs/karate_IC_graph.pkl

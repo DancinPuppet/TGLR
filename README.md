@@ -112,8 +112,7 @@ python main.py --mode test --dataset twitter25_noquote --model TGLR --obs-len 5 
 
 The checkpoint was selected by validation F1. Recorded test F1/AUC: **0.3636 / 0.8104**.
 Standalone reevaluation can vary because test-time adaptation is stochastic.
-The [configuration and results](data/saved_graphs/twitter25_noquote_results.json)
-and [781/98/98 split](data/saved_graphs/twitter25_noquote_split.json) are included.
+The fixed-seed split contains 781 training, 98 validation, and 98 test cascades.
 
 ## Quick start
 

@@ -74,8 +74,7 @@ Node IDs are local integer indices; cascade IDs follow the original list order.
 Original identifier mappings are not released. Graph structure, numeric features,
 labels, snapshots, and loader ordering are preserved.
 
-See [split IDs](twitter25_noquote_split.json) and
-[configuration, recorded metrics, and file checksums](twitter25_noquote_results.json).
+The loader reproduces the 781/98/98 train/validation/test split with graph seed 123.
 
 ## Cache format
 
