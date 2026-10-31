@@ -121,12 +121,19 @@ def nx_to_pyg(graph, args, return_node_mapping=False):
 
     node_states[node_states == 0] = -1
 
-    struct_names = ["degree_centrality", "avg_neighbor_degree", "clustering", "core_number", "pagerank"]
+    # Recompute from topology so existing graph caches need no regeneration.
+    degrees = dict(graph.degree())
+    max_degree = max(degrees.values(), default=0)
+    max_neighbor_degree = {
+        node: max((degrees[v] for v in graph.neighbors(node)), default=0) / max_degree
+        if max_degree else 0.0 for node in graph
+    }
+    struct_names = ["degree_centrality", "avg_neighbor_degree", "clustering", "core_number", "max_neighbor_degree"]
     struct_feat = torch.zeros((num_nodes, 5), dtype=torch.float)
     for node, mapped_idx in node_mapping.items():
         nd = graph.nodes[node]
         for j, name in enumerate(struct_names):
-            struct_feat[mapped_idx, j] = float(nd.get(name, 0.0))
+            struct_feat[mapped_idx, j] = float(max_neighbor_degree[node] if name == "max_neighbor_degree" else nd.get(name, 0.0))
 
     if not args.approximate:
         nodes_in_order = [u for u, _ in sorted(node_mapping.items(), key=lambda kv: kv[1])]

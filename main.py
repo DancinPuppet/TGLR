@@ -203,6 +203,8 @@ def parse_args(argv=None):
     parser.add_argument("--diff-weight", type=float, default=args.diff_weight)
     parser.add_argument("--kl-weight", type=float, default=args.kl_weight)
     parser.add_argument("--ttt-steps", type=int, default=args.ttt_steps)
+    parser.add_argument("--beta-start", type=float, default=args.beta_start)
+    parser.add_argument("--beta-end", type=float, default=args.beta_end)
     parser.add_argument("--sampling", action=argparse.BooleanOptionalAction, default=args.is_sampling)
     parser.add_argument("--visual", action=argparse.BooleanOptionalAction, default=args.visual)
     parser.add_argument("--limit-graphs", type=int, help="Use a subset for smoke tests, not paper evaluation.")
@@ -235,6 +237,7 @@ def parse_args(argv=None):
     args.in_channels = args.node_features_dim
     args.diff_weight, args.kl_weight = opts.diff_weight, opts.kl_weight
     args.ttt_steps, args.is_sampling, args.visual = opts.ttt_steps, opts.sampling, opts.visual
+    args.beta_start, args.beta_end = opts.beta_start, opts.beta_end
     return args, opts
 
 
@@ -273,7 +276,7 @@ def main(argv=None):
     dataset_train = GraphGroupDataset(graphs_train, args)
     dataset_validate = GraphGroupDataset(graphs_validate, args)
     dataloader = dataloader_build(dataset_train, args)
-    validation_loader = dataloader_build(dataset_validate, args, shuffle=False)
+    validation_loader = dataloader_build(dataset_validate, args)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda epoch: 1.0)
     trainer(args, dataloader, validation_loader, model, optimizer, scheduler, device)

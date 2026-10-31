@@ -10,12 +10,12 @@ class Args(object):
         # self.graph_type = 'twitter16' # diff_weight = 0.01 False start = 0 obs_len = 3
         # self.graph_type = 'weibo' # diff_weight = 0.01 False start = 0 obs_len = 2
         # self.graph_type = 'digg'
-        self.graph_type = 'karate_SI'  # diff_weight = 0.1 False start = 0 obs_len = 20 ttt_steps = 100
-        # self.graph_type = 'karate_SIR'  # diff_weight = 0.1 False start = 0 obs_len = 20 ttt_steps = 100
+        self.graph_type = 'karate_SI'  # diff_weight = 0.1 False start = 0 obs_len = 20 ttt_steps = 50
+        # self.graph_type = 'karate_SIR'  # diff_weight = 0.1 False start = 0 obs_len = 20 ttt_steps = 50
         # self.graph_type = 'jazz_SI'    # diff_weight = 0.1 False start = 0 obs_len = 5 ttt_steps = 100
-        # self.graph_type = 'jazz_SIR'  # diff_weight = 0.1 False start = 0 obs_len = 5 ttt_steps = 100
+        # self.graph_type = 'jazz_SIR'  # diff_weight = 0.1 False start = 0 obs_len = 5 ttt_steps = 50
         # self.graph_type = 'cora_ml_SI'  # diff_weight = 1.0 start = 0 obs_len = 5 ttt_steps = 30
-        # self.graph_type = 'cora_ml_SIR'  # diff_weight = 1.0 start = 0 obs_len = 5 ttt_steps = 30
+        # self.graph_type = 'cora_ml_SIR'  # diff_weight = 1.0 True start = 0 obs_len = 5 ttt_steps = 50
         # self.graph_type = 'facebook_SI' # diff_weight = 1.0 True start = 0 obs_len = 5 ttt_steps = 30
         # self.graph_type = 'facebook_SIR' # diff_weight = 1.0 True start = 0 obs_len = 5 ttt_steps = 30
 
@@ -66,7 +66,7 @@ class Args(object):
         self.is_sampling = False # Dataset-dependent setting
         self.diff_weight = 0.1 # Dataset-dependent setting
         self.kl_weight = 0.01  # λ_kl
-        self.ttt_steps = 100 # Dataset-dependent setting
+        self.ttt_steps = 50 # Karate-SI; see README for per-dataset settings
         # 2. Whether to resume interrupted training
         self.resume_train = False
         if self.resume_train:
@@ -81,7 +81,7 @@ class Args(object):
 
         # Training parameters
         # Number of data-loading worker processes
-        self.num_workers = 0
+        self.num_workers = 1
         self.batch_size = 1
         self.num_batches = 1000
         self.obs_len = 20 # Number of observed time steps; dataset-dependent setting
@@ -124,8 +124,8 @@ class Args(object):
 
 
         # # diffusion
-        self.beta_start = 1e-4  # Initial noise coefficient; candidate values: 1e-5, 1e-4
-        self.beta_end = 0.01 # Final noise coefficient; candidate values: 0.0001, 0.01
+        self.beta_start = 1e-5  # Karate-SI; see README for per-dataset settings
+        self.beta_end = 0.0001 # Karate-SI; see README for per-dataset settings
         self.max_time_steps = 100
         self.pred_start_weight = 0.5
         self.pred_end_weight = 1.5

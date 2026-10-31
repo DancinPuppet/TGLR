@@ -3594,7 +3594,7 @@ class TGLR_wo_D_Model(nn.Module):
         eps = torch.randn_like(mu_prime)
         z0 = mu_prime + torch.exp(0.5 * logvar) * eps
 
-        z_pred = z0
+        z_pred = z0 if self.args.is_sampling else mu_prime
 
         batch_cand = batch[cand_idx]
         y_cand = y[cand_idx]
