@@ -170,24 +170,6 @@ Checkpoint filenames identify the model and dataset but do not encode every
 hyperparameter or random seed. Use the matching configuration and full dataset
 for scientific comparisons; do not use `--limit-graphs` for that purpose.
 
-### Scope of the supplied checkpoints
-
-The existing `TGLR_*` files match the main comparison tables. The four-scene
-`TGLR_wo_LA`, `TGLR_wo_G`, `TGLR_wo_T`, and `TGLR_wo_D` files match the selected
-Table 5 ablations (without distribution modeling, temporal refinement, TTA,
-and diffusion plus its dependent TTA, respectively). `TGLR_wo_D` uses the same
-training prediction-sampling setting as the corresponding full model.
-
-Use the corresponding dataset configuration for these variants, with two exceptions:
-`TGLR_wo_LA` and `TGLR_wo_G` on Karate-SIR use `--ttt-steps 100`;
-`GLAD` uses `--ttt-steps 0` and predicts directly from the student distribution.
-The supplied `TGLR_w_C` checkpoints match the Karate/Cora-ML concatenation results
-in Figure 4, and `GLAD`/`GLCFGD` match their Figure 5 results.
-
-Some figures and the Karate-SIR full-model row of Table 5 use separate trained
-runs from Tables 3/4. Their full-model checkpoints are not substituted for the
-main-table files. No additional checkpoints are included in this update.
-
 ## Additional commands
 
 Resume from a checkpoint containing optimizer and scheduler state:
