@@ -25,7 +25,6 @@ representations during inference.
 | `node_feature.py` | Structural and optional user-profile feature extraction |
 | `visual.py` | Latent representation visualization |
 | `static.py` | Structural statistics for the real-world datasets |
-| `numpy_data_conv.py` | Optional legacy pickle export for external SIDSL experiments |
 | `data/saved_graphs/` | Preprocessed graph caches and dataset availability information |
 | `model_saves/checkpoints/` | Provided best-validation-F1 checkpoints |
 
@@ -187,10 +186,6 @@ python main.py --mode stats --dataset karate_SI
 Enable manifold plots during training with `--visual`. Plotting and density
 estimation add runtime. `static.py` computes additional real-world structural
 statistics after all four real-world graph caches have been installed.
-
-`numpy_data_conv.py` is an optional export script for an external SIDSL working
-copy. SIDSL source code is not bundled, and this utility is not imported by the
-TGLR training pipeline.
 
 ## Manuscript
 
