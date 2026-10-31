@@ -238,9 +238,6 @@ in Figure 4, and `GLAD`/`GLCFGD` match their Figure 5 results.
 Some figures and the Karate-SIR full-model row of Table 5 use separate trained
 runs from Tables 3/4. Their full-model checkpoints are not substituted for the
 main-table files. No additional checkpoints are included in this update.
-The two existing Jazz `TGLR_wo_D` files are retained from the previous release;
-they are not part of the current Table 5 and do not use the updated feature
-configuration. Use the previous repository revision for those legacy files.
 
 ## Additional commands
 
