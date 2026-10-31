@@ -135,67 +135,16 @@ under `output/`, so supplied checkpoints are not overwritten.
 
 ## Training
 
-For example, train TGLR on Karate-SI:
+Train TGLR on Karate-SI:
 
 ```bash
-python main.py --dataset karate_SI --model TGLR --obs-len 20 --diff-weight 0.1 --ttt-steps 50 --no-sampling --beta-start 1e-5 --beta-end 1e-4 --gpu 0
+python main.py --dataset karate_SI --model TGLR --gpu 0 --no-visual
 ```
 
-The supplied full-model checkpoints correspond to Tables 3 and 4. The five
-structural features are degree centrality, average neighbor degree, clustering,
-core number, and **maximum neighbor degree**. The last feature replaces PageRank
-and is divided by the maximum degree of the graph (zero for isolated nodes).
-It is computed from the cached topology during tensor conversion; the released
-cache files do not need to be regenerated.
-
-The CLI does not switch settings automatically when `--dataset` changes. Set
-`--obs-len`, `--diff-weight`, `--ttt-steps`, `--sampling`/`--no-sampling`,
-`--beta-start`, and `--beta-end` according to the checkpoint configuration below.
-All use `--obs-start 0` and `--kl-weight 0.01`.
-
-| Dataset | Obs. length | Diff. weight | Sampling | TTA steps | Beta start / end | Recorded F1 / AUC |
-| --- | ---: | ---: | :---: | ---: | --- | --- |
-| `karate_SI` | 20 | 0.1 | no | 50 | 1e-05 / 0.0001 | 0.5425 / 0.9267 |
-| `karate_SIR` | 20 | 0.1 | no | 50 | 0.0001 / 0.01 | 0.4047 / 0.7642 |
-| `jazz_SI` | 5 | 0.1 | no | 100 | 0.0001 / 0.01 | 0.4976 / 0.9101 |
-| `jazz_SIR` | 5 | 0.1 | no | 50 | 0.0001 / 0.01 | 0.4398 / 0.8619 |
-| `cora_ml_SI` | 5 | 1 | yes | 30 | 0.0001 / 0.01 | 0.5683 / 0.9386 |
-| `cora_ml_SIR` | 5 | 1 | yes | 50 | 1e-05 / 0.0001 | 0.4866 / 0.8707 |
-| `facebook_SI` | 5 | 1 | yes | 30 | 0.0001 / 0.01 | 0.5971 / 0.9476 |
-| `facebook_SIR` | 5 | 1 | yes | 30 | 0.0001 / 0.01 | 0.4713 / 0.8362 |
-| `twitter25` | 5 | 0.1 | no | 100 | 0.0001 / 0.01 | 0.3420 / 0.8071 |
-| `twitter25_noquote` | 5 | 0.1 | no | 80 | 0.0001 / 0.01 | 0.3800 / 0.8184 |
-| `twitter15` | 2 | 0.01 | no | 100 | 0.0001 / 0.01 | 0.3140 / 0.7807 |
-| `twitter16` | 3 | 0.01 | no | 100 | 0.0001 / 0.01 | 0.3186 / 0.7894 |
-| `weibo` | 2 | 0.01 | no | 80 | 0.0001 / 0.01 | 0.3113 / 0.7893 |
-
-For example, train Facebook-SI with its matching settings:
-
-```bash
-python main.py --dataset facebook_SI --model TGLR --obs-len 5 --diff-weight 1.0 --ttt-steps 30 --sampling --beta-start 1e-4 --beta-end 0.01 --no-visual
-```
-
-`--sampling` controls latent sampling for training predictions; it does not
-remove sampling used by the diffusion training objective.
-
-Defaults include 300 epochs, batch size 1, learning rate 0.001, KL weight 0.01,
-training seed 127, and graph-shuffle seed 123. Graphs are shuffled once and split
-80%/10%/10% into training/validation/test sets. Model selection uses validation
-F1, with the existing early-stopping logic in `train.py`. Training and validation
-loaders use the original shuffled ordering; standalone test evaluation uses a
-fixed order. Recorded post-training metrics can differ from a standalone run
-because test-time adaptation also depends on the random-number state.
-
-Available `--model` values:
-
-```text
-TGLR, GLAD, GLCFGD, TGLR_wo_G, TGLR_wo_LA, TGLR_wo_T,
-TGLR_wo_D, TGLR_w_C, TGLR_w_CA, TGLR_w_Dy
-```
-
-The full TGLR model uses `args.hidden_dim` for its latent width (32 by default).
-The separate legacy `args.latent_dim` field does not set TGLR's effective latent
-width. Keep architecture settings compatible with any checkpoint being loaded.
+Adjust dataset-specific settings in `args.py` or through command-line options.
+Changing `--dataset` does not automatically change the other hyperparameters.
+Use `python main.py --help` to see the available options and model variants.
+Checkpoints are selected by validation F1.
 
 ## Evaluation
 
@@ -229,7 +178,7 @@ Table 5 ablations (without distribution modeling, temporal refinement, TTA,
 and diffusion plus its dependent TTA, respectively). `TGLR_wo_D` uses the same
 training prediction-sampling setting as the corresponding full model.
 
-Use the dataset settings above for these variants, with two exceptions:
+Use the corresponding dataset configuration for these variants, with two exceptions:
 `TGLR_wo_LA` and `TGLR_wo_G` on Karate-SIR use `--ttt-steps 100`;
 `GLAD` uses `--ttt-steps 0` and predicts directly from the student distribution.
 The supplied `TGLR_w_C` checkpoints match the Karate/Cora-ML concatenation results
